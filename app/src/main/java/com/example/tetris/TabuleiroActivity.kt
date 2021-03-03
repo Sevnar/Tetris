@@ -16,9 +16,10 @@ class TabuleiroActivity : AppCompatActivity() {
     val COLUNA = 26
     var running = true
     var speed:Long = 300
+
     lateinit var binding:ActivityTabuleiroBinding
 
-    var peca = Peca(3)
+    var peca = Peca(1)
 
     inner class Ponto(var x:Int,var y:Int){
         fun moveDown(){
@@ -57,6 +58,9 @@ class TabuleiroActivity : AppCompatActivity() {
             }
         }
 
+        binding.girarButton.setOnClickListener {
+            peca.verifyRotatePeca(board)
+        }
 
         var gridboard = findViewById<GridLayout>(R.id.gridboard)
         gridboard.rowCount = LINHA
@@ -98,7 +102,7 @@ class TabuleiroActivity : AppCompatActivity() {
                         peca.moveDown()
                     }else{
                         board = peca.printPeca(board)
-                        peca = Peca(Random.nextInt(1,4))
+                        peca = Peca(Random.nextInt(1, 8))
                     }
                     //print peça
                     try {
